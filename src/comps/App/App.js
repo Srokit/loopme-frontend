@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       isPlaying: false,
       loopInfo: {name: '', tempo: '', key: ''},
+      loopUrl: '',
     };
   }
   componentDidMount() {
@@ -46,21 +47,16 @@ class App extends Component {
   }
   changeLoop(loopInfo) {
     const loopUrl = config.apiBaseUrl + loopInfo.url;
-    const newLoopInfo = {
-      name: loopInfo.name,
-      tempo: loopInfo.tempo,
-      key: loopInfo.key,
-    };
     this.audioPlayerRef.current.pause();
     this.audioPlayerRef.current.setSrc(loopUrl);
     this.audioPlayerRef.current.load();
-    this.setState({loopInfo: newLoopInfo});
+    this.setState({loopInfo: loopInfo.info, loopUrl: loopUrl});
   }
   render() {
     return (
       <div className="App">
         <Header />
-        <MainArea loopInfo={this.state.loopInfo} isPlaying={this.state.isPlaying} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
+        <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} isPlaying={this.state.isPlaying} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
         <AudioPlayer ref={this.audioPlayerRef} />
       </div>
     );

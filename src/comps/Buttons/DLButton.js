@@ -1,9 +1,11 @@
 import './Buttons.css';
 
-const DLButton = ({onClick}) => {
+const DLButton = ({loopDLLink}) => {
     return (
-        <div onClick={onClick} className="button dlButton">
-            <div className="dlButtonImg"></div>
+        <div className="button dlButton">
+            <a href={loopDLLink} download="Loop_FromLoopMe.mp3" target="_blank">
+                <div className="dlButtonImg"></div>
+            </a>
         </div>
     )
 };
