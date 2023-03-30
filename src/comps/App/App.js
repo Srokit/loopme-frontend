@@ -17,6 +17,8 @@ class App extends Component {
     this.onClickNext = this.onClickNext.bind(this);
     this.onClickDownload = this.onClickDownload.bind(this);
     this.onClickPlayPause = this.onClickPlayPause.bind(this);
+    // Start on 4 so that it wraps around to 0 on first call
+    this.loopIndexForGetCall = '4';
     this.state = {
       isPlaying: false,
       loopInfo: {name: '', tempo: '', key: ''},
@@ -24,7 +26,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    apiGetNextLoop().then((loopInfo) => {
+    apiGetNextLoop(this.loopIndexForGetCall).then((loopInfo) => {
       this.changeLoop(loopInfo);
     });
   }
@@ -37,7 +39,7 @@ class App extends Component {
     this.setState({isPlaying: !this.state.isPlaying});
   }
   onClickNext() {
-    apiGetNextLoop().then((loopInfo) => {
+    apiGetNextLoop(this.loopIndexForGetCall).then((loopInfo) => {
       this.changeLoop(loopInfo);
       this.audioPlayerRef.current.play();
       this.setState({isPlaying: true});
@@ -52,6 +54,7 @@ class App extends Component {
     this.audioPlayerRef.current.setSrc(loopUrl);
     this.audioPlayerRef.current.load();
     this.setState({loopInfo: loopInfo.info, loopUrl: loopUrl});
+    this.loopIndexForGetCall = loopInfo.index;
   }
   render() {
     return (
