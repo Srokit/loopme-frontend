@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 
-import AudioPlayer from './AudioPlayer';
-import PlayButton from './PlayButton';
+import AudioPlayer from '../AudioPlayer/AudioPlayer';
 
-import config from './config';
-import { apiGetNextLoopUrl } from './api';
+import config from '../../config';
+import { apiGetNextLoopUrl } from '../../api';
 
 import { Component, createRef } from 'react';
 
@@ -38,7 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         <AudioPlayer ref={this.audioPlayerRef} />
-        <PlayButton onPlayButtonClick={this.onClickPlayButton} />
+        <div onPlayButtonClick={this.onClickPlayButton}>Play</div>
         {/* Next Button */}
         <div onClick={this.onClickNextButton}>Next</div>
       </div>
