@@ -2,6 +2,7 @@ import './App.css';
 
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Header from '../Header/Header';
+import MainArea from '../MainArea/MainArea';
 
 import config from '../../config';
 import { apiGetNextLoopUrl } from '../../api';
@@ -12,23 +13,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.audioPlayerRef = createRef();
-    this.onClickPlayButton = this.onClickPlayButton.bind(this);
-    this.onClickNextButton = this.onClickNextButton.bind(this);
+    this.onClickNext = this.onClickNext.bind(this);
+    this.onClickDownload = this.onClickDownload.bind(this);
+    this.onClickPlayPause = this.onClickPlayPause.bind(this);
   }
-  onClickPlayButton() {
-    console.log("OnClickPlayButton");
+  onClickPlayPause() {
     if (!this.audioPlayerRef.current.isPlaying) {
       this.audioPlayerRef.current.load();
       this.audioPlayerRef.current.play();
+    } else {
+      this.audioPlayerRef.current.pause();
     }
   }
-  onClickNextButton() {
+  onClickNext() {
     apiGetNextLoopUrl().then((url) => {
       this.changeLoop(url);
     });
   }
+  onClickDownload() {
+    // TODO
+  }
   changeLoop(url) {
     const loopUrl = config.apiBaseUrl + url;
+    this.audioPlayerRef.current.pause();
     this.audioPlayerRef.current.setSrc(loopUrl);
     this.audioPlayerRef.current.load();
     this.audioPlayerRef.current.play();
@@ -37,10 +44,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <MainArea onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} />
         <AudioPlayer ref={this.audioPlayerRef} />
-        <div onClick={this.onClickPlayButton}>Play</div>
-        {/* Next Button */}
-        <div onClick={this.onClickNextButton}>Next</div>
       </div>
     );
   }

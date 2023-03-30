@@ -1,0 +1,9 @@
+.mainArea {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+    margin-top: 0;
+    padding-top: 50px;
+}

@@ -1,0 +1,16 @@
+.buttonsArea {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonsAreaWithButton {
+    width: 33%;
+    height: 100%
+}
+
+.buttonsAreaFiller {
+    flex: 1
+}
+

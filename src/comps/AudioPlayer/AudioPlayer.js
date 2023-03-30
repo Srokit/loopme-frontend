@@ -26,9 +26,12 @@ class AudioPlayer extends Component {
         return this.isPlaying;
     }
     play() {
-        console.log("AudioPlayer::play()");
         this.audioRef.current.play();
         this.isPlaying = true;
+    }
+    pause() {
+        this.audioRef.current.pause();
+        this.isPlaying = false;
     }
     render() {
         return <audio ref={this.audioRef} hidden></audio>
