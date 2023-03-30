@@ -1,25 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import AudioPlayer from './AudioPlayer';
+import PlayButton from './PlayButton';
+
+import config from './config';
+import { apiGetNextLoopUrl } from './api';
+
+import { Component, createRef } from 'react';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.audioPlayerRef = createRef();
+    this.onClickPlayButton = this.onClickPlayButton.bind(this);
+    this.onClickNextButton = this.onClickNextButton.bind(this);
+  }
+  onClickPlayButton() {
+    console.log("OnClickPlayButton");
+    if (!this.audioPlayerRef.current.isPlaying) {
+      this.audioPlayerRef.current.load();
+      this.audioPlayerRef.current.play();
+    }
+  }
+  onClickNextButton() {
+    apiGetNextLoopUrl().then((url) => {
+      this.changeLoop(url);
+    });
+  }
+  changeLoop(url) {
+    const loopUrl = config.apiBaseUrl + url;
+    this.audioPlayerRef.current.setSrc(loopUrl);
+    this.audioPlayerRef.current.load();
+    this.audioPlayerRef.current.play();
+  }
+  render() {
+    return (
+      <div className="App">
+        <AudioPlayer ref={this.audioPlayerRef} />
+        <PlayButton onPlayButtonClick={this.onClickPlayButton} />
+        {/* Next Button */}
+        <div onClick={this.onClickNextButton}>Next</div>
+      </div>
+    );
+  }
+};
 
 export default App;
