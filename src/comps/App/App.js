@@ -5,7 +5,6 @@ import Header from '../Header/Header';
 import MainArea from '../MainArea/MainArea';
 import Copyright from '../Copyright/Copyright';
 
-import config from '../../config';
 import { apiGetNextLoop } from '../../api';
 import { Component, createRef } from 'react';
 
@@ -47,7 +46,7 @@ class App extends Component {
     // TODO
   }
   changeLoop(loopInfo) {
-    const loopUrl = config.apiBaseUrl + loopInfo.url;
+    const loopUrl = loopInfo.url;
     this.audioPlayerRef.current.pause();
     this.audioPlayerRef.current.setSrc(loopUrl);
     this.audioPlayerRef.current.load();
