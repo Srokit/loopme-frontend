@@ -1,10 +1,10 @@
 
 import config from "./config";
 
-const apiGetNextLoopUrl = () => {
-    return fetch(config.apiBaseUrl + '/loop').then(data => data.json()).then(data => data.url);
+const apiGetNextLoop = () => {
+    return fetch(config.apiBaseUrl + '/loop').then(data => data.json()).then(data => data);
 };
 
 export {
-    apiGetNextLoopUrl,
+    apiGetNextLoop,
 };

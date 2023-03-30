@@ -34,7 +34,7 @@ class AudioPlayer extends Component {
         this.isPlaying = false;
     }
     render() {
-        return <audio ref={this.audioRef} hidden></audio>
+        return <audio ref={this.audioRef} hidden loop></audio>
     }
 };
 

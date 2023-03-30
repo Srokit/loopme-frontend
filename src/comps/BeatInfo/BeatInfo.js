@@ -1,17 +1,17 @@
 import './BeatInfo.css';
 
-const BeatInfo = () => {
+const BeatInfo = ({loopInfo}) => {
     return (
         <div className="beatInfo">
             <div className="beatName">
-                <p>Linda</p>
+                <p>{loopInfo.name}</p>
             </div>
             <div className="tempoAndKey">
                 <div className="tempo">
-                    <p>135BPM</p>
+                    <p>{loopInfo.tempo}</p>
                 </div>
                 <div className="key">
-                    <p>C#m</p>
+                    <p>{loopInfo.key}</p>
                 </div>
             </div>
         </div>

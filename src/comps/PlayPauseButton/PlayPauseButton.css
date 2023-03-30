@@ -1,0 +1,9 @@
+.playPauseButton {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    left: 447px;
+    top: 80px;
+    background-size: contain;
+    z-index: 10;
+}

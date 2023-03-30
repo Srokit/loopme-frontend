@@ -1,9 +1,12 @@
 import './Waveform.css';
 
-const Waveform = () => {
+import PlayPauseButton from '../PlayPauseButton/PlayPauseButton';
+
+const Waveform = ({isPlaying, playPauseOnClick}) => {
     return (
         <div className="waveform">
-            <div></div>
+            <div className="waveformImg"></div>
+            <PlayPauseButton isPlaying={isPlaying} onClick={playPauseOnClick}/>
         </div>
     );
 };
