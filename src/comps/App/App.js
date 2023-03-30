@@ -1,6 +1,7 @@
 import './App.css';
 
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
+import Header from '../Header/Header';
 
 import config from '../../config';
 import { apiGetNextLoopUrl } from '../../api';
@@ -35,8 +36,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <AudioPlayer ref={this.audioPlayerRef} />
-        <div onPlayButtonClick={this.onClickPlayButton}>Play</div>
+        <div onClick={this.onClickPlayButton}>Play</div>
         {/* Next Button */}
         <div onClick={this.onClickNextButton}>Next</div>
       </div>
