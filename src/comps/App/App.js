@@ -3,11 +3,12 @@ import './App.css';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Header from '../Header/Header';
 import MainArea from '../MainArea/MainArea';
+import Copyright from '../Copyright/Copyright';
 
 import config from '../../config';
 import { apiGetNextLoop } from '../../api';
-
 import { Component, createRef } from 'react';
+
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} isPlaying={this.state.isPlaying} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
+        <Copyright />
         <AudioPlayer ref={this.audioPlayerRef} />
       </div>
     );
