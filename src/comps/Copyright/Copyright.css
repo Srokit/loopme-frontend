@@ -8,11 +8,9 @@
     flex: 1;
 }
 .copyright p {
-    font-size: 30px;
+    font-size: 15px;
     width: 100%;
     height: 50%;
     text-align: center;
-    line-height: 100%;
-    vertical-align: middle;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
