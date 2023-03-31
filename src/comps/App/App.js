@@ -30,8 +30,9 @@ class App extends Component {
     this.onClickPlayPause = this.onClickPlayPause.bind(this);
     this.state = {
       isPlaying: false,
-      // TODO: Make these fields blank
-      loopInfo: {name: 'Randomname', tempo: '165', key: 'G#'},
+      // Uncomment to get placeholder for beat info
+      // loopInfo: {name: 'Randomname', tempo: '165', key: 'G#'},
+      loopInfo: {name: '', tempo: '', key: ''},
       loopUrl: '',
     };
   }
