@@ -1,13 +1,5 @@
-.waveform {
-    width: 100%;
-    height: 50%;
-    position: relative;
-}
-
-.waveformImg {
+.waveformCanvas {
     width: 75%;
     height: 80%;
-    background-image: url('../../images/waveform.png');
-    background-size: contain;
     margin: auto;
 }
