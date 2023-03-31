@@ -8,6 +8,18 @@ import Copyright from '../Copyright/Copyright';
 import { apiGetNextLoop } from '../../api';
 import { Component, createRef } from 'react';
 
+// Make name more readable by only taking first word
+const truncateName = (name) => {
+  let nextWordI = name.length;
+  // Find first captial that isn't first letter and cut there
+  for (let i = 1; i < name.length; i++) {
+    if (name.charAt(i) === name.charAt(i).toUpperCase()) {
+      nextWordI = i;
+      break;
+    }
+  }
+  return name.slice(0, nextWordI);
+};
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +62,7 @@ class App extends Component {
     this.audioPlayerRef.current.pause();
     this.audioPlayerRef.current.setSrc(loopUrl);
     this.audioPlayerRef.current.load();
+    loopInfo.info.name = truncateName(loopInfo.info.name);
     this.setState({loopInfo: loopInfo.info, loopUrl: loopUrl});
   }
   render() {
