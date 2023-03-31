@@ -1,9 +1,8 @@
-.dlButtonImg {
-    width: 40px;
-    height: 40px;
-    background-image: url('../../images/dl.png');
-    background-size: contain;
+.dlSvg {
+    width: 25px;
+    height: 25px;
     margin: auto;
+    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(114deg) brightness(100%) contrast(111%);
 }
 
 .button {
@@ -31,6 +30,11 @@
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+.button > a {
+    display: flex;
+    flex-direction: rows;
+}
+
 .buttonText {
     font-size: 28px;
     color: rgba(255, 255, 255, 0.9);
@@ -41,6 +45,10 @@
     box-sizing: border-box;
     /* font-family: 'poppinslight'; */
     font-family: 'DM Sans', sans-serif;
+}
+
+.smallButtonText {
+    font-size: 20px;
 }
 
 .buttonSpacer {
@@ -59,5 +67,5 @@
 .arrowRightCont {
     display: flex;
     flex-direction: column;
-    height: 30px;
+    height: 36px;
 }

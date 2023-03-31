@@ -5,12 +5,21 @@
     flex-direction: row;
 }
 
-.buttonsAreaWithButton {
+.buttonsAreaNextButton {
     width: 33%;
+    height: 100%
+}
+
+.buttonsAreaDlButton {
+    width: 23%;
     height: 100%
 }
 
 .buttonsAreaFiller {
     flex: 1
+}
+
+.buttonsAreaSpacer {
+    width: 10%;
 }
 
