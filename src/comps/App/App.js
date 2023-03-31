@@ -29,7 +29,6 @@ class App extends Component {
     this.onClickDownload = this.onClickDownload.bind(this);
     this.onClickPlayPause = this.onClickPlayPause.bind(this);
     this.state = {
-      isPlaying: false,
       // Uncomment to get placeholder for beat info
       // loopInfo: {name: 'Randomname', tempo: '165', key: 'G#'},
       loopInfo: {name: '', tempo: '', key: ''},
@@ -47,13 +46,11 @@ class App extends Component {
     } else {
       this.audioPlayerRef.current.pause();
     }
-    this.setState({isPlaying: !this.state.isPlaying});
   }
   onClickNext() {
     apiGetNextLoop().then((loopInfo) => {
       this.changeLoop(loopInfo);
       this.audioPlayerRef.current.play();
-      this.setState({isPlaying: true});
     });
   }
   onClickDownload() {
@@ -68,10 +65,11 @@ class App extends Component {
     this.setState({loopInfo: loopInfo.info, loopUrl: loopUrl});
   }
   render() {
+    console.log("Redrawing");
     return (
       <div className="App">
         <Header />
-        <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} isPlaying={this.state.isPlaying} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
+        <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
         <Copyright />
         <AudioPlayer ref={this.audioPlayerRef} />
       </div>

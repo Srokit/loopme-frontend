@@ -5,11 +5,11 @@ import ButtonsArea from '../ButtonsArea/ButtonsArea';
 import BeatInfo from '../BeatInfo/BeatInfo';
 import WaveformArea from '../WaveformArea/WaveformArea';
 
-const MainArea = ({loopDLLink, loopInfo, isPlaying, onClickDownload, onClickNext, onPlayPauseClick}) => {
+const MainArea = ({loopDLLink, loopInfo, onClickDownload, onClickNext, onPlayPauseClick}) => {
     return (
         <div className="mainArea debugOutline">
             <BeatInfo loopInfo={loopInfo} />
-            <WaveformArea isPlaying={isPlaying} playPauseOnClick={onPlayPauseClick} />
+            <WaveformArea playPauseOnClick={onPlayPauseClick} />
             <ButtonsArea loopDLLink={loopDLLink} onClickDownload={onClickDownload} onClickNext={onClickNext} />
         </div>
     );
