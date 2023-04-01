@@ -34,6 +34,7 @@ class App extends Component {
       loopInfo: {name: '', tempo: '', key: ''},
       loopUrl: '',
     };
+    this.mainAreaRef = createRef();
   }
   componentDidMount() {
     apiGetNextLoop().then((loopInfo) => {
@@ -46,6 +47,7 @@ class App extends Component {
     } else {
       this.audioPlayerRef.current.pause();
     }
+    this.mainAreaRef.current.pauseOrResumeWaveform();
   }
   onClickNext() {
     apiGetNextLoop().then((loopInfo) => {
@@ -69,7 +71,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} />
+        <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} ref={this.mainAreaRef} />
         <Copyright />
         <AudioPlayer ref={this.audioPlayerRef} />
       </div>

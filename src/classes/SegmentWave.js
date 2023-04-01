@@ -18,14 +18,21 @@ class SegmentWave {
         this.moveFreq = moveFreq;
         this.numSegs = numSegs;
         this.setInitHeights();
+        this.isPaused = false;
+        this.pauseTs = 0;
     }
     // Return the height of segment in the wave at this index
-    getSegmentHeightWithIndex(index) {
+    getOffsetForSeg(index) {
         return this.segHeights[index];
     }
 
     update(newTs /*is ms*/) {
-        const tsInS = (newTs - this.initTimeTs) * 1.0 / 1000;
+        let tsInMs = newTs - this.initTimeTs;
+        if (this.isPaused) {
+            tsInMs = this.pauseTs;
+        }
+        const tsInS = tsInMs * 1.0 / 1000;
+
         // console.log("numsegs", this.numSegs);
         for (let i = 0; i < this.numSegs; i++) {
             const initPhase = (i * 1.0 * this.initWaveFreq / this.numSegs * 2 * Math.PI);
@@ -38,6 +45,17 @@ class SegmentWave {
         for (let i = 0; i < this.numSegs; i++) {
             this.segHeights[i] = Math.floor(waveEqn(i * 1.0 * this.initWaveFreq / this.numSegs * 2 * Math.PI) * this.amp + this.minHeight);
         }
+    }
+
+    pause() {
+        const currTs = performance.now() - this.initTimeTs;
+        this.pauseTs = currTs;
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.initTimeTs = performance.now() - this.pauseTs;
+        this.isPaused = false;
     }
 }
 

@@ -19,10 +19,15 @@ class SegmentRandomMover {
         this.oscFreqs = new Array(numSegs).fill(0);
         this.oscAmps = new Array(numSegs).fill(0);
         this.oscStartTsInS = new Array(numSegs).fill(0);
+        this.isPaused = false;
+        this.pauseTs = 0;
     }
  
     update(newTs) {
-        const elapsMs = newTs - this.startTs;
+        let elapsMs = newTs - this.startTs;
+        if (this.isPaused) {
+            elapsMs = this.pauseTs;
+        }
         const elapsS = elapsMs * 1.0 / 1000;
         if (elapsMs - this.tsWhenLastOscCheckHappened > this.startNewOscilationIntervalMs) {
             this.tsWhenLastOscCheckHappened = elapsMs;
@@ -71,6 +76,17 @@ class SegmentRandomMover {
 
     testOdds(odds) {
         return Math.random() < odds;
+    }
+
+    pause() {
+        const currTs = performance.now() - this.startTs;
+        this.pauseTs = currTs;
+        this.isPaused = true;
+    }
+
+    resume() {
+        this.isPaused = false;
+        this.startTs = performance.now();
     }
 };
 
