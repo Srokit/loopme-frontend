@@ -91,8 +91,8 @@ class App extends Component {
           }}>
           <Header />
           <MainArea loopDLLink={this.state.loopUrl} loopInfo={this.state.loopInfo} onClickNext={this.onClickNext} onPlayPauseClick={this.onClickPlayPause} ref={this.mainAreaRef} />
-          <Copyright />
           <AudioPlayer ref={this.audioPlayerRef} />
+          <Copyright />
         </AppContext.Provider>
       </div>
     );
