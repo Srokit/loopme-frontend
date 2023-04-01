@@ -10,22 +10,18 @@ import { Component, createRef } from 'react';
 class MainArea extends Component {
     constructor(props) {
         super(props);
-        this.loopDLLink = props.loopDLLink;
-        this.loopInfo = props.loopInfo;
-        this.onClickDownload = props.onClickDownload;
-        this.onClickNext = props.onClickNext;
-        this.onPlayPauseClick = props.onPlayPauseClick;
         this.waveformAreaRef = createRef();
     }
     pauseOrResumeWaveform() {
         this.waveformAreaRef.current.pauseOrResumeWaveform();
     }
     render() {
+        console.log("mainarearedraw");
         return (
             <div className="mainArea debugOutline">
-                <BeatInfo loopInfo={this.loopInfo} />
-                <WaveformArea playPauseOnClick={this.onPlayPauseClick} ref={this.waveformAreaRef} />
-                <ButtonsArea loopDLLink={this.loopDLLink} onClickDownload={this.onClickDownload} onClickNext={this.onClickNext} />
+                <BeatInfo loopInfo={this.props.loopInfo} />
+                <WaveformArea ref={this.waveformAreaRef} />
+                <ButtonsArea loopDLLink={this.props.loopDLLink} onClickNext={this.props.onClickNext} />
             </div>
         );
     }

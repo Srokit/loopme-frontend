@@ -10,7 +10,7 @@ class Waveform extends Component{
         super();
         this.canvRef = createRef();
         this.segEffecters = [];
-        this.isPaused = false;
+        this.isPaused = true;
     }
     initDraw() {
         const canvWidth = this.canvRef.current.width;
@@ -31,6 +31,9 @@ class Waveform extends Component{
         this.segEffecters.push(segWave2);
         this.segEffecters.push(segRandMover);
         this.segEffecters.push(segRandMover2);
+        for (let i = 0; i < this.segEffecters.length; i++) {
+            this.segEffecters[i].pause();
+        }
         const renderFunc = (newTs) => {
             if (this.canvRef.current === null) {
                 requestAnimationFrame(renderFunc);

@@ -2,8 +2,12 @@ import './ButtonsArea.css';
 
 import NextButton from '../Buttons/NextButton';
 import DLButton from '../Buttons/DLButton';
+import AppContext from '../../AppContext';
+import { useContext } from 'react';
 
-const ButtonsArea = ({loopDLLink, onClickNext}) => {
+const ButtonsArea = ({loopDLLink}) => {
+
+    const {onClickNext} = useContext(AppContext);
     return (
         <div className="buttonsArea">
             <div className="buttonsAreaSpacer"></div>

@@ -1,18 +1,16 @@
 import './PlayPauseButton.css';
 import playImgSrc from '../../images/play.png';
 import pauseImgSrc from '../../images/pause.png';
-import { useState } from 'react';
+import { useContext } from 'react';
 
-const PlayPauseButton = ({onClick}) => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const onButtonClick = () => {
-        setIsPlaying(!isPlaying);
-        onClick();
-    }
+import AppContext from '../../AppContext';
+
+const PlayPauseButton = () => {
+    const {isPlaying, playOrPause} = useContext(AppContext);
     const bgImgFn = (isPlaying) ? pauseImgSrc : playImgSrc;
     const style = {'backgroundImage': `url(${bgImgFn})`};
     return (
-        <div className="playPauseButton" style={style} onClick={onButtonClick}></div>
+        <div className="playPauseButton" style={style} onClick={playOrPause}></div>
     );
 };
 

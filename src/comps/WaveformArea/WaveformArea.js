@@ -7,7 +7,6 @@ import { Component, createRef } from 'react';
 class WaveformArea extends Component {
     constructor(props) {
         super(props);
-        this.playPauseOnClick = props.playPauseOnClick;
         this.wfRef = createRef();
     }
     pauseOrResumeWaveform() {
@@ -17,7 +16,7 @@ class WaveformArea extends Component {
         return (
             <div className="waveformArea">
                 <Waveform ref={this.wfRef} />
-                <PlayPauseButton onClick={this.playPauseOnClick} />
+                <PlayPauseButton />
             </div>
         )
     }
